@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Coffee Shop</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Coffee Shop</h1>
+    </header>
+    <main>
+        <section id="menu">
+            <h2>Menu</h2>
+            <form id="order-form">
+                <fieldset>
+                    <legend>Drinks</legend>
+                    <ul>
+                        <li>
+                            <label for="espresso">Espresso</label>
+                            <input type="number" id="espresso" name="espresso" min="0" max="10" value="0">
+                        </li>
+                        <li>
+                            <label for="nescafe">Nescafe</label>
+                            <input type="number" id="nescafe" name="nescafe" min="0" max="10" value="0">
+                        </li>
+                        <li>
+                            <label for="machiatto">Machiatto</label>
+                            <input type="number" id="machiatto" name="machiatto" min="0" max="10" value="0">
+                        </li>
+                        <li>
+                            <label for="americano">Americano</label>
+                            <input type="number" id="americano" name="americano" min="0" max="10" value="0">
+                        </li>
+                        <li>
+                            <label for="double-espresso">Double Espresso</label>
+                            <input type="number" id="double-espresso" name="double-espresso" min="0" max="10" value="0">
+                        </li>
+                        <li>
+                            <label for="tea">Tea</label>
+                            <input type="number" id="tea" name="tea" min="0" max="10" value="0">
+                        </li>
+                        <li>
+                            <label for="salep">Salep</label>
+                            <input type="number" id="salep" name="salep" min="0" max="10" value="0">
+                        </li>
+                        <li>
+                            <label for="cappuccino">Cappuccino</label>
+                            <input type="number" id="cappuccino" name="cappuccino" min="0" max="10" value="0">
+                        </li>
+                        <li>
+                            <label for="latte">Latte</label>
+                            <input type="number" id="latte" name="latte" min="0" max="10" value="0">
+                        </li>
+                        <li>
+                            <label for="mocha">Mocha</label>
+                            <input type="number" id="mocha" name="mocha" min="0" max="10" value="0">
+                        </li>
+                        <li>
+                            <label for="hot-chocolate">Hot Chocolate</label>
+                            <input type="number" id="hot-chocolate" name="hot-chocolate" min="0" max="10" value="0">
+                        </li>
+                    </ul>
+                </fieldset>
+                <button type="submit">Order</button>
+            </form>
+        </section>
+        <section id="qr-code"></section>
+    </main>
+    <footer>
+        <p>&copy; 2021 Coffee Shop. All rights reserved.</p>
+    </footer>
+    <script>
+        // Get the form element
+const form = document.getElementById('order-form');
+
+// Add an event listener for the form submission
+form.addEventListener('submit', function(event) {
+    // Prevent the default form submission behavior
+    event.preventDefault();
+
+    // Get the form data
+    const formData = new FormData(form);
+
+    // Generate the QR code
+    const qrCode = new QRCode(document.getElementById('qr-code'), {
+        text: window.location.href.split('?')[0] + `drinks.html?data=${encodeURIComponent(JSON.stringify(Object.fromEntries(formData)))}`,
+        width: 256,
+        height: 256,
+        colorDark: '#000000',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H
+    });
+});
+    </script>
+</body>
+</html>
