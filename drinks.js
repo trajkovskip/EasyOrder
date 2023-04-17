@@ -12,7 +12,7 @@ const drinksList = document.getElementById('drinks-list');
 for (const [drink, quantity] of Object.entries(formData)) {
     if (quantity > 0) {
         const drinkItem = document.createElement('li');
-        drinkItem.innerHTML = `<h2>${drink}${quantity}</h2>`;
+        drinkItem.innerHTML = `<h2>${drink} (${quantity})</h2>`;
         drinksList.appendChild(drinkItem);
     }
 }
